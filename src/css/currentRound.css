@@ -1,0 +1,21 @@
+#currentRound {
+  width: 50vw;
+  height:20vh;
+  min-height:200px;
+  min-width:400px;
+  border: 1px solid black;
+  margin:20px auto;
+}
+
+#higherLowerBox {
+  height:100px;
+  width: 300px;
+  border: 1px solid black;
+  margin:10px auto;
+  color:#888;
+}
+
+.arrow {
+  margin:20px 40px;
+  font-size:3.5rem;
+}

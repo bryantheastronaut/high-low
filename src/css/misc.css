@@ -1,0 +1,10 @@
+#title {
+  background-color:#888;
+  margin:0;
+  padding:10px;
+}
+
+#title > h1 {
+  margin:5px 0 10px 0;
+  color:white;
+}
