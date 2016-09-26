@@ -6,9 +6,10 @@ class CurrentRound extends Component {
     super(props);
   }
   render() {
+    console.log(this.props.cards);
     return (
       <div id='currentRound'>
-        TEST
+        <h1>{ this.props.cards.player.card } VS. { this.props.cards.cpu.card }</h1>
       </div>
     )
   }

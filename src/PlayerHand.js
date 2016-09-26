@@ -11,7 +11,7 @@ function decodeHTML(input) {
 const Hand = (props) => {
   let cards = props.hand.map((card, i) => {
     return (
-      <li key={ i } className={`singleCard ${card.color}`}>
+      <li key={ i } onClick={ ()=> props.onPlayCard(card) } className={`singleCard ${card.color}`}>
         { card.card }
         <h3>{ decodeHTML(card.suit) }</h3>
       </li>
