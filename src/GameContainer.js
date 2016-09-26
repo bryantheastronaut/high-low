@@ -15,9 +15,10 @@ class GameContainer extends Component {
       playerHand: [],
       cpuHand: [],
       score: { player: 0, cpu: 0 },
-      currentRound: { player: '', cpu: '' }
+      currentRound: { player: {}, cpu: {} }
     }
     this.drawCards = this.drawCards.bind(this);
+    this.playCard = this.playCard.bind(this);
   }
   drawCards() {
     let roundDeck = DECK;
@@ -33,25 +34,33 @@ class GameContainer extends Component {
       cpu.push(roundDeck[cardIndex]);
       roundDeck = roundDeck.slice(0, cardIndex).concat(roundDeck.slice(cardIndex + 1));
     }
-    console.log(player);
     this.setState({ playerHand: player, cpuHand: cpu });
   }
   playCard(card) {
-    //this.setState({
-    //  currentRound: { player: card }
-    //});
+    let cpuCard = this.state.cpuHand[0];
+    this.setState({
+      currentRound: { player: card, cpu: cpuCard }
+    });
+    let newCpuHand = this.state.cpuHand.slice(1);
+    let cardIndex = this.state.playerHand.indexOf(card);
+    let newPlayerHand = this.state.playerHand.slice(0,cardIndex).concat(this.state.playerHand.slice(cardIndex+1));
+    this.setState({ playerHand: newPlayerHand, cpuHand: newCpuHand});
   }
   render() {
+    console.log(this.state.currentRound.player);
+    console.log('is the players card and the cpu card is:');
+    console.log(this.state.currentRound.cpu);
     return (
       <div className="App">
         <Title />
-        <CurrentRound />
+        <CurrentRound cards={ this.state.currentRound } />
         <HigherLower />
         <PlayerHand
           hand={ this.state.playerHand }
-          score={ this.state.score.player } />
+          score={ this.state.score.player }
+          onPlayCard={ this.playCard } />
         <OpponentHand
-          hand={ ['2','6','10', 'K', '4'] }
+          hand={ this.state.cpuHand }
           score={ this.state.score.cpu } />
         <div className='clear' />
         <button onClick={ this.drawCards }>draw</button>
