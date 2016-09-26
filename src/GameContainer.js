@@ -47,13 +47,11 @@ class GameContainer extends Component {
     this.setState({ playerHand: newPlayerHand, cpuHand: newCpuHand});
   }
   render() {
-    console.log(this.state.currentRound.player);
-    console.log('is the players card and the cpu card is:');
-    console.log(this.state.currentRound.cpu);
     return (
       <div className="App">
         <Title />
-        <CurrentRound cards={ this.state.currentRound } />
+        <CurrentRound
+          cards={ this.state.currentRound } />
         <HigherLower />
         <PlayerHand
           hand={ this.state.playerHand }
