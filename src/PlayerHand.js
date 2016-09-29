@@ -1,12 +1,7 @@
 import React from 'react';
 import Scores from './Scores';
+import { decodeHTML } from './decodeHTML';
 import './css/hand.css';
-
-function decodeHTML(input) {
-  let txt = document.createElement('textarea');
-  txt.innerHTML = input;
-  return txt.value;
-}
 
 const Hand = (props) => {
   let cards = props.hand.map((card, i) => {
