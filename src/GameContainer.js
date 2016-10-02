@@ -18,11 +18,15 @@ class GameContainer extends Component {
       score: { player: 0, cpu: 0 },
       currentRound: { player: {}, cpu: {} }
     }
+    this.newGame = this.newGame.bind(this);
     this.drawCards = this.drawCards.bind(this);
     this.playCard = this.playCard.bind(this);
     this.compareScores = this.compareScores.bind(this);
   }
   //start game
+  newGame() {
+    //start new game. reset state.
+  }
   drawCards() {
     let roundDeck = DECK;
     let player = [];
@@ -64,7 +68,9 @@ class GameContainer extends Component {
     console.log(this.state.score);
     return (
       <div className="App">
-        <Title />
+        <Title
+          onDrawCards={ this.drawCards }
+          onNewGame={ this.newGame } />
         <CurrentRound
           cards={ this.state.currentRound } />
         <HigherLower
@@ -78,7 +84,6 @@ class GameContainer extends Component {
           hand={ this.state.cpuHand }
           score={ this.state.score.cpu } />
         <div className='clear' />
-        <button onClick={ this.drawCards }>draw</button>
       </div>
     );
   }
