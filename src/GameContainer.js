@@ -67,7 +67,9 @@ class GameContainer extends Component {
         <Title />
         <CurrentRound
           cards={ this.state.currentRound } />
-        <HigherLower />
+        <HigherLower
+          lastCard={ this.state.currentRound.cpu }
+          nextCard={ this.state.cpuHand[0] }/>
         <PlayerHand
           hand={ this.state.playerHand }
           score={ this.state.score.player }
