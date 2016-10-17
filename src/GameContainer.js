@@ -13,19 +13,36 @@ class GameContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isModalOpen: false,
       playerHand: [],
       cpuHand: [],
       score: { player: 0, cpu: 0 },
       currentRound: { player: {}, cpu: {} }
     }
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.newGame = this.newGame.bind(this);
     this.drawCards = this.drawCards.bind(this);
     this.playCard = this.playCard.bind(this);
     this.compareScores = this.compareScores.bind(this);
   }
+
+  //open/close instruction modal
+  openModal() {
+    this.setState({ isModalOpen: true })
+  }
+  closeModal() {
+    this.setState({ isModalOpen: false })
+  }
+
   //start game
-  newGame() {
-    //start new game. reset state.
+  newGame(e) {
+    e.preventDefault();
+    this.setState({
+      score: { player: 0, cpu: 0 },
+      currentRound: { player: {}, cpu: {} }
+    })
+    this.drawCards();
   }
   drawCards() {
     let roundDeck = DECK;
@@ -64,11 +81,15 @@ class GameContainer extends Component {
       this.setState({ score: { player: this.state.score.player + 1, cpu: this.state.score.cpu } })
     } else console.log('tied');
   }
+
   render() {
-    console.log(this.state.score);
+    console.log(this.state.isModalOpen)
     return (
       <div className="App">
         <Title
+          isModalOpen={ this.state.isModalOpen }
+          onModalOpen={ this.openModal }
+          onModalClose={ this.closeModal }
           onDrawCards={ this.drawCards }
           onNewGame={ this.newGame } />
         <CurrentRound
