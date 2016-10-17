@@ -72,18 +72,14 @@ class GameContainer extends Component {
     this.compareScores(convertFaceToNumbers(card.card), convertFaceToNumbers(cpuCard.card));
   }
   compareScores(playerCard, cpuCard) {
-    console.log(`player: ${playerCard} cpu: ${cpuCard}`);
     if (playerCard < cpuCard) {
-      console.log('cpu point')
       this.setState({ score: { player: this.state.score.player, cpu: this.state.score.cpu + 1 } });
     } else if (playerCard > cpuCard) {
-      console.log('playerPoint')
       this.setState({ score: { player: this.state.score.player + 1, cpu: this.state.score.cpu } })
-    } else console.log('tied');
+    }
   }
 
   render() {
-    console.log(this.state.isModalOpen)
     return (
       <div className="App">
         <Title
